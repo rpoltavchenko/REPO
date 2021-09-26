@@ -1,13 +1,13 @@
-let firstCount = 3600;
-let hoursInDay = 24;
-let hour = 1;
-let dayisInMonth = 30;
+const firstCount = 3600;
+const hoursInDay = 24;
+const hour = 1;
+let daysInMonth = 30;
 
-let secondsInHour = hour * firstcount;
-let secondsInDay = secoundsInHour*hoursInDay;
-let secondsinMonth = secondsInDay*dayisInMonth;   
+let secondsInHour = hour * firstCount;
+let secondsInDay = secondsInHour*hoursInDay;
+let secondsinMonth = secondsInDay*daysInMonth;   
 
-console.log(secondsInHour, secondsInDay, secondsinMonth);
+alert("One hour has " + secondsInHour + "seconds " + "One day has " + secondsInDay + "seconds " + "One month has " + secondsinMonth "seconds );
 
 or 
 
