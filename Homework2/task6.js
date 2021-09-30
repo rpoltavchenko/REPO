@@ -12,7 +12,7 @@ let firstRightCond = a**2==b**2+c**2;
 let secondRightCond = b**2==a**2+c**2;
 let thirdRightCond = c**2==b**2+a**2;
 
-if (firstRightCond  || secondRightCond  || thirdRightCond === true) {
+if (firstRightCond  || secondRightCond  || thirdRightCond) {
     console.log ('Your triange is right')}
 else {
 console.log ('You have other type of triangle')    
