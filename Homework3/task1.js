@@ -10,10 +10,13 @@ for (let i = 0; i < arr.length; i++) {
 
 console.log(total);
 
+
+let arr = [2,3,4,5];
+let total = 1;
 let i = 0;
 while (i<arr.length) { 
     total*=arr[i];
-    console.log(total);
-    i++;   
+    i++;
+    console.log(total);   
 }
 
