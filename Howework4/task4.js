@@ -1,36 +1,36 @@
-// 3. Створіть клас MonthException, конструктор якого приймає параметр message і ініціалізує поле name значенням 'MonthException'.
-// Реалізуйте функцію showMonthName(month), в якій параметр month – це порядковий номер місяця в році. 
-// Функція повертає назву місяця відповідно до введеного номера місяця
-// У випадку некоректного вводу кидається ексепшн у вигляді об’єкта класу MonthException з повідомленням 'Incorrect month number'.
-// Напишіть код, який використовує цю функцію, передбачте обробку можливих винятків.
+// 4. Реалізуйте функцію showUser(id), яка приймає параметром користувацьке id і повертає об’єкт, 
+// який містить значення переданої id. Також функція викидає помилку у разі якщо введено від’ємне id.
+	
+// Реалізуйте функцію showUsers(ids), яка приймає параметром масив користувацьких айді ids, 
+// перевіряє з використанням функції showUser() кожен елемент масиву ids на коректність, 
+// в разі виключної ситуації виводить повідомлення про помилку. Функція showUsers(ids) повертає масив об’єктів, 
+// де значеннями ключів є коректні елементи ids.
+
 // 	Приклад роботи програми:
-// > console.log(showMonthName(5)); 
-// May
-// > console.log(showMonthName(14)); 
-// MonthException Incorrect month number
+// showUsers([7, -12, 44, 22]);
+// Error: ID must not be negative: -12
+// [ {id: 7}, {id: 44}, {id: 22} ]
 
-
-class MonthException {
-    constructor (message){
-        this.name = message;
-    }
+function ShowUser(id) {
+        if (id<0) {
+            throw new Error ('Invalid ID, ID should be positive ' + id)
+    } return {id:id};  
 }
 
-let exception = new MonthException('Incorect month number');
+function showUsers(ids) {
+    let result = [];
+    ids.forEach((id) => {
+        try {
+            let person = showUser(id);
+            result.push(person);
+        } catch (exception) {
+            console.log(exception.msg);
+        }
+        });
 
-const monthNames = [null, "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"];
-function showMonthName(month){
-    month = prompt("Enter the month number")
-    if (!month || month > 12 || isNaN(month)){
-    throw new Error (MonthException)}
-    return monthNames[month];
-    
+        return result;
 }
- try {
-     let result = showMonthName();
-     console.log(result);
-    } catch (e){
-        console.log(exception)
-    }
- 
+
+showUsers([1, 2, -10, -22, 50]);
+
+
