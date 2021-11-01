@@ -10,17 +10,36 @@ let date = new Date;
 let currentHour = date.getHours;
 if (currentHour >23 || currentHour<5){
     console.log("Good night!!")
-    }
-    else if (currentHour >= 5 && currentHour <= 11){
+
+        } else if (currentHour >= 5 && currentHour <= 11){
     console.log ("Good Morning!")
         } else if (currentHour >= 11 && currentHour <= 17){
     console.log("Good Afternoon")
-            } else if (currentHour >= 17 && currentHour <= 23){
+        } else if (currentHour >= 17 && currentHour <= 23){
         console.log ("Good evening")
+    
     } else {
         console.log("Invalid data")
 }
 
+
+let date = new Date();
+let currentHour = date.getHours();
+
+switch(true){
+    case (currentHour >=23 || currentHour<=5):
+        console.log("Good night!!");
+        break; 
+    case (currentHour > 5 && currentHour <= 11):
+        console.log("Good Afternoon");
+        break; 
+    case (currentHour > 11 && currentHour <= 17):
+            console.log("Good evening");
+            break; 
+    case (currentHour >  17 && currentHour < 23):
+        console.log("Good evening!!");
+        break; 
+    }
 
 
 
