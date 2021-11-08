@@ -8,13 +8,13 @@ const thirdEl = list.children[2].innerHTML;
 
 console.log (firstEl, lastEl, secondEl, forthEl, thirdEl);
 
-// const list = document.getElementById('list');
-// const firstEl = list.firstElementChild.innerHTML;
-// const lastEl = list.lastElementChild.innerHTML;
-// const secondEl = list.firstEl.nextSibling.innerHTML;
-// const forthEl = list.lastEl.previousSibling.innerHTML;
-// const thirdEl = list.forthEl.previousSibling.innerHTML;
+const list = document.getElementById('list');
+const firstEl = list.firstElementChild.innerHTML;
+const lastEl = list.lastElementChild.innerHTML;
+const secondEl = list.firstEl.nextSibling.innerHTML;
+const forthEl = list.lastEl.previousSibling.innerHTML;
+const thirdEl = list.forthEl.previousSibling.innerHTML;
 
-// console.log (firstEl, lastEl, secondEl, forthEl, thirdEl);
+console.log (firstEl, lastEl, secondEl, forthEl, thirdEl);
 
 
