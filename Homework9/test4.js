@@ -1,0 +1,2 @@
+const $checkboxes = $(':checkbox');
+$checkboxes
