@@ -10,7 +10,9 @@
 </head>
 <body>
   <div class = "container" id="container"> 
-      <h1>todos</h1>
+    <div class="list"> 
+    <h1 class = "title" id='title'></h1>
+      
    <form id="form">
        <input 
             type="text" 
@@ -19,12 +21,22 @@
             autocomplete="off"
             placeholder="Whats need to be done?"
             />
-    <ul class = 'todos' id ='todos'></ul>
-   </form>
+       </form>
+   <ul class = 'todos' id ='todos'></ul>
    <small
    >Left click to toggle complete. <br />Right click to delete the
-todo.</small>
-<small class='rights'>Made by rpoltavchenko</small>
-</div>
+    todo.</small>
+    <small class='rights'>Made by rpoltavchenko</small>
+    </div>
+    <div class="list-items">
+    <input type="text"
+      id = "new-list"
+      placeholder="new list">
+      <button id='btn'>add new list</button>
+      <ul class="list-of-todo" id="list-of-todo">
+          <li>new list</li>
+      </ul>
+    </div>
+</div> 
 </body>
 </html>
