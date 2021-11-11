@@ -9,9 +9,12 @@
     <script src="todo.js" defer></script>
 </head>
 <body>
+  <div class="app-name">
+    <h1 class="main-title">TODO APP</h1>
+  </div>
   <div class = "container" id="container"> 
     <div class="list"> 
-    <h1 class = "title" id='title'></h1>
+    <h2 class = "title" id='title'>Untitled</h2>
       
    <form id="form">
        <input 
@@ -23,20 +26,31 @@
             />
        </form>
    <ul class = 'todos' id ='todos'></ul>
-   <small
-   >Left click to toggle complete. <br />Right click to delete the
+
+  </div>
+
+    <div class="My-lists">
+      <div class="list-items">
+      <h2 class ="list-of-lists">My lists</h2>
+      <div class="list-form">
+        <input type="text"
+             id = "new-list"
+             class="new-list"
+             placeholder="Add a new list">
+        <button class ="btn" id="btn">+</button>
+    </div>
+      <ul class= "list-of-tasks" id="list-of-tasks"></ul>
+      </div>
+      <div class="clear-storage">
+        <button class="clear-ls">Clear lists</button>
+      </div>
+    </div>
+
+</div> 
+<div class="credits">
+  <small>Left click to toggle complete. <br />Right click to delete the
     todo.</small>
     <small class='rights'>Made by rpoltavchenko</small>
-    </div>
-    <div class="list-items">
-    <input type="text"
-      id = "new-list"
-      placeholder="new list">
-      <button id='btn'>add new list</button>
-      <ul class="list-of-todo" id="list-of-todo">
-          <li>new list</li>
-      </ul>
-    </div>
-</div> 
+</div>
 </body>
 </html>
