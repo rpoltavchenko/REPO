@@ -1,61 +1,68 @@
-const form = document.getElementById("form");
-const input = document.getElementById("input");
-const todosUL = document.getElementById("todos");
-const title = document.querySelector('.title');
+const formEl = document.getElementById("form");
+const inputEl = document.getElementById("input");
+const todosUlEl = document.getElementById("todos");
+const titleEl = document.querySelector(".title");
 
-let activeListName = 'todos'
+let activeListName = titleEl.innerText;
 
 let todos = JSON.parse(localStorage.getItem(activeListName));
 
-const newList = document.querySelector('#new-list')
-const btn = document.querySelector('#btn')
-const listOfTodoEl = document.querySelector('#list-of-todo')
+const newListEl = document.querySelector("#new-list");
+const btn = document.querySelector("#btn");
+const listOfTasksEl = document.querySelector("#list-of-tasks");
 
-const listOfTodo = Object.keys(window.localStorage)
+const btnClearLS = document.querySelector(".clear-ls");
 
-listOfTodo.forEach(element => { 
+
+const listOfTasks = Object.keys(window.localStorage);
+
+listOfTasks.forEach(element => { 
     const newListElem = document.createElement("li");
-newListElem.innerText = element;
-listOfTodoEl.appendChild(newListElem);
+    newListElem.innerText = element;
+    listOfTasksEl.appendChild(newListElem);
 
 
-newListElem.addEventListener('click',() => {
-title.innerText = newListElem.innerText
-activeListName = newListElem.innerText
-todos = JSON.parse(localStorage.getItem(activeListName));
-todosUL.innerHTML = '';
-if (todos) {
-    todos.forEach((todo) => {
-        addTodo(todo);
-    });
-}
-});
-    
-});
-btn.addEventListener("click", () => {
-    localStorage.setItem(newList.value, JSON.stringify([]));
-    
-    const newListElem = document.createElement("li");
-    newListElem.innerText = newList.value;
-    listOfTodoEl.appendChild(newListElem);
-    newList.value = "";
-    
-    newListElem.addEventListener('click',() => {
-    title.innerText = newListElem.innerText
+newListElem.addEventListener("click",() => {
+    titleEl.innerText = newListElem.innerText
     activeListName = newListElem.innerText
+    
     todos = JSON.parse(localStorage.getItem(activeListName));
-    todosUL.innerHTML = '';
+    todosUlEl.innerHTML = "";
+    newListElem.classList.toggle("active-list")
+    if (todos) {
+        todos.forEach((todo) => {
+        addTodo(todo);
+        });
+    }
+    });
+    
+});
+
+
+btn.addEventListener("click", () => {
+    localStorage.setItem(newListEl.value, JSON.stringify([]));
+    
+    const newListElem = document.createElement("li");
+    newListElem.innerText = newListEl.value;
+    listOfTasksEl.appendChild(newListElem);
+    newListEl.value = "";
+    
+    newListElem.addEventListener("click",() => {
+    titleEl.innerText = newListElem.innerText
+    activeListName = newListElem.innerText
+    
+    
+
+    todos = JSON.parse(localStorage.getItem(activeListName));
+    todosUlEl.innerHTML = "";
     if (todos) {
         todos.forEach((todo) => {
             addTodo(todo);
-        });
-    }
+            });
+        }
+    });
+
 });
-
-
-});
-
-
 
 
 if (todos) {
@@ -64,14 +71,15 @@ if (todos) {
     });
 }
 
-form.addEventListener("submit", (e) => {
+formEl.addEventListener("submit", (e) => {
     e.preventDefault();
 
     addTodo();
 });
 
+// Create a new To Do
 function addTodo(todo) {
-    let todoText = input.value;
+    let todoText = inputEl.value;
 
     if (todo) {
         todoText = todo.text;
@@ -87,7 +95,7 @@ function addTodo(todo) {
         todoEl.innerText = todoText;
 
         todoEl.addEventListener("click", () => {
-            todoEl.classList.toggle("completed");
+            todoEl.classList.toggle("completed");  //pseudo array of el.classList
 
             updateLS();
         });
@@ -100,9 +108,9 @@ function addTodo(todo) {
             updateLS();
         });
 
-        todosUL.appendChild(todoEl);
+        todosUlEl.appendChild(todoEl);
 
-        input.value = "";
+        inputEl.value = ""; // input becomes empty after submitting
 
         updateLS();
     }
@@ -123,7 +131,10 @@ function updateLS() {
     localStorage.setItem(activeListName, JSON.stringify(todos));
 }
 
-
+btnClearLS.addEventListener("click", function () {
+        localStorage.clear();
+        listOfTasksEl.innerHTML = "";
+    })
 
 // todosUL.addEventListener('click', (event)=>{
 //     event.target.classList.toggle("completed");
