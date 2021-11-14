@@ -1,2 +1,6 @@
 const $checkboxes = $(':checkbox');
-$checkboxes
+$checkboxes.on('click', function () {
+    if ($(":checkbox: checked").lenght == 3) {
+        $checkboxes.attr('disabled', true);
+    }
+})
