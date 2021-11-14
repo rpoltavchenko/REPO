@@ -2,12 +2,13 @@ const formEl = document.getElementById("form");
 const inputEl = document.getElementById("input");
 const todosUlEl = document.getElementById("todos");
 const titleEl = document.querySelector(".title");
+const todoList = document.querySelector(".list");
 
 let activeListName = titleEl.innerText;
 
 let todos = JSON.parse(localStorage.getItem(activeListName));
 
-const newListEl = document.querySelector("#new-list");
+const newListName = document.querySelector("#new-list");
 const btn = document.querySelector("#btn");
 const listOfTasksEl = document.querySelector("#list-of-tasks");
 
@@ -16,60 +17,69 @@ const btnClearLS = document.querySelector(".clear-ls");
 
 const listOfTasks = Object.keys(window.localStorage);
 
-listOfTasks.forEach(element => { 
+if (!listOfTasks.length) {
+    todoList.style.display = "none";
+}
+
+listOfTasks.forEach(listName => {
     const newListElem = document.createElement("li");
-    newListElem.innerText = element;
+    newListElem.innerText = listName;
     listOfTasksEl.appendChild(newListElem);
 
 
-newListElem.addEventListener("click",() => {
-    titleEl.innerText = newListElem.innerText
-    activeListName = newListElem.innerText
-    
-    todos = JSON.parse(localStorage.getItem(activeListName));
-    todosUlEl.innerHTML = "";
-    newListElem.classList.toggle("active-list")
-    if (todos) {
-        todos.forEach((todo) => {
-        addTodo(todo);
-        });
-    }
+    newListElem.addEventListener("click", () => {
+        setActiveList(newListElem);
     });
-    
+
 });
+
+if (listOfTasks.length) {
+    setActiveList(listOfTasksEl.firstChild)
+}
+
+// if (todos) {
+//     todos.forEach((todo) => {
+//         addTodo(todo);
+//     });
+// }
 
 
 btn.addEventListener("click", () => {
-    localStorage.setItem(newListEl.value, JSON.stringify([]));
-    
-    const newListElem = document.createElement("li");
-    newListElem.innerText = newListEl.value;
-    listOfTasksEl.appendChild(newListElem);
-    newListEl.value = "";
-    
-    newListElem.addEventListener("click",() => {
-    titleEl.innerText = newListElem.innerText
-    activeListName = newListElem.innerText
-    
-    
+    localStorage.setItem(newListName.value, JSON.stringify([]));
 
+    const newListElem = document.createElement("li");
+    newListElem.innerText = newListName.value;
+    listOfTasksEl.appendChild(newListElem);
+    newListName.value = "";
+    todoList.style.display = "block";
+    setActiveList(newListElem);
+    newListElem.addEventListener("click", () => {
+
+        setActiveList(newListElem);
+    });
+
+
+});
+
+function setActiveList(activeList) {
+    titleEl.innerText = activeList.innerText
+    activeListName = activeList.innerText
+
+    let siblings = activeList.parentElement.children;
+    for (let sib of siblings) {
+        sib.classList.remove('active-list')
+    }
+    activeList.classList.toggle("active-list");
     todos = JSON.parse(localStorage.getItem(activeListName));
     todosUlEl.innerHTML = "";
     if (todos) {
         todos.forEach((todo) => {
             addTodo(todo);
-            });
-        }
-    });
-
-});
-
-
-if (todos) {
-    todos.forEach((todo) => {
-        addTodo(todo);
-    });
+        });
+    }
 }
+
+
 
 formEl.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -94,6 +104,11 @@ function addTodo(todo) {
 
         todoEl.innerText = todoText;
 
+        todosUlEl.appendChild(todoEl);
+
+        inputEl.value = ""; // input becomes empty after submitting
+
+        updateLS();
         todoEl.addEventListener("click", () => {
             todoEl.classList.toggle("completed");  //pseudo array of el.classList
 
@@ -108,11 +123,6 @@ function addTodo(todo) {
             updateLS();
         });
 
-        todosUlEl.appendChild(todoEl);
-
-        inputEl.value = ""; // input becomes empty after submitting
-
-        updateLS();
     }
 }
 
@@ -132,12 +142,15 @@ function updateLS() {
 }
 
 btnClearLS.addEventListener("click", function () {
-        localStorage.clear();
-        listOfTasksEl.innerHTML = "";
-    })
+    localStorage.clear();
+    listOfTasksEl.innerHTML = "";
+    activeListName = "";
+    titleEl.innerText = "";
+    todoList.style.display = "none";
+})
 
 // todosUL.addEventListener('click', (event)=>{
 //     event.target.classList.toggle("completed");
 //             updateLS();
-    
+
 // })
