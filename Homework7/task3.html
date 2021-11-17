@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn1">Click me to make the page color blue</button>
+    <button id="btn2">Double Click me to make the color pink</button>
+    <button id="btn3">Click me and hold to make the page color brown</button>
+    <a href="">Hover me to make the page color yellow</a>
+    <script>
+        
+        document.querySelector('#btn1').addEventListener('click', () => {
+            document.body.style.backgroundColor = "blue"
+        });
+        document.querySelector('#btn2').addEventListener('dblclick', () => {
+            document.body.style.backgroundColor = "pink"
+        });
+        document.querySelector('#btn3').addEventListener('dblclick', () => {
+            document.body.style.backgroundColor = "pink"
+        });
+
+
+        document.querySelector('a').addEventListener('mouseover', () => {
+            document.body.style.backgroundColor = 'yellow'
+        });
+        document.querySelector('a').addEventListener('mouseout', () => {
+            document.body.style.backgroundColor = 'white'
+        });
+
+    </script>
+</body>
+
+</html>
