@@ -9,15 +9,24 @@
 </head>
 
 <body>
-    <select size="3" name="list" id="list">
+    <select size="5" name="list" id="list">
         <option value="">I am option 1</option>
         <option value="">I am option 2</option>
         <option value="">I am option 3</option>
+        <option value="">I am option 4</option>
+        <option value="">I am option 5</option>
+        <option value="">I am option 6</option>
     </select>
     <button>Delete Item from the list</button>
     <script>
 
-const item = 
+        const item = document.querySelector("#list");
+        const btn = document.querySelector("button");
+
+
+        btn.addEventListener('click', () => {
+            item.remove(item.selectedIndex);
+        });
 
     </script>
 </body>
